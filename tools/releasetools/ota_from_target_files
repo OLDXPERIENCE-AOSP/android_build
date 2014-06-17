@@ -509,23 +509,42 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
 
+  script.Print("##############################################");
+  script.Print("#     ) (       (   (          )             #");
+  script.Print("#  ( /( )\ )    )\ ))\ )    ( /(   (         #");
+  script.Print("#  )\()|()/((  (()/(()/((   )\())  )\  (     #");
+  script.Print("# ((_)\ /(_))\  /(_))(_))\ ((_)\ (((_) )\    #");
+  script.Print("# __((_|_))((_)(_))(_))((_) _((_))\___((_)   #");
+  script.Print("# \ \/ / _ \ __| _ \_ _| __| \| ((/ __| __|  #");
+  script.Print("#  >  <|  _/ _||   /| || _|| .` || (__| _|   #");
+  script.Print("# /_/\_\_| |___|_|_\___|___|_|\_| \___|___|  #");
+  script.Print("#     (C)2014 The XPerience Project          #");
+  script.Print("#              By Klozz Jesus                #");
+  script.Print("##############################################");
+
   if "selinux_fc" in OPTIONS.info_dict:
     WritePolicyConfig(OPTIONS.info_dict["selinux_fc"], output_zip)
 
+  script.Print(" Formating System....");
+  script.Print(" Please wait and read or watch tv... ");
   script.FormatPartition("/system")
   script.Mount("/system")
 # script.UnpackPackageDir("recovery", "/system")
+  script.Print(" Unpacking System....");
+  script.Print(" Trim , trim trim.....");
   script.UnpackPackageDir("system", "/system")
-
+  script.Print(" The Rabbit enter into hole :B ");
+  script.Print(" Making Symlinks this take some secongs ");
   symlinks = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
-
+  script.Print(" unpacking kernel and flashing into boot partition...");
   boot_img = common.GetBootableImage("boot.img", "boot.img",
                                      OPTIONS.input_tmp, "BOOT")
 #  recovery_img = common.GetBootableImage("recovery.img", "recovery.img",
 #                                         OPTIONS.input_tmp, "RECOVERY")
 #  MakeRecoveryPatch(OPTIONS.input_tmp, output_zip, recovery_img, boot_img)
 
+  script.Print(" Setting the correct permissions...");
   Item.GetMetadata(input_zip)
   Item.Get("system").SetPermissions(script)
 
@@ -539,7 +558,9 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
 
   script.ShowProgress(0.2, 10)
   script.WriteRawImage("/boot", "boot.img")
-
+  script.Print("Finished...Thanks for choose XPerience!");
+  script.Print("From México To the World :) ");
+  script.Print(" XPerience by Klozz Jesús");
   script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()
 
