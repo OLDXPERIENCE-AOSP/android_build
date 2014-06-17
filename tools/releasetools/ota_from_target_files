@@ -559,7 +559,7 @@ else if get_stage("%(bcb_dev)s", "stage") == "3/3" then
   script.ShowProgress(0.2, 10)
   script.WriteRawImage("/boot", "boot.img")
   script.Print("Finished...Thanks for choose XPerience!");
-  script.Print("From México To the World :) ");
+  script.Print("From Mexico To the World :) ");
   script.Print(" XPerience by Klozz Jesús");
   script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()
