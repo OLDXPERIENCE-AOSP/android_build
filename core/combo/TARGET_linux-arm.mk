@@ -35,7 +35,7 @@ TARGET_ARCH_VARIANT := armv5te
 endif
 
 ifeq ($(strip $(TARGET_GCC_VERSION_EXP)),)
-TARGET_GCC_VERSION := 4.7
+TARGET_GCC_VERSION := 4.8
 else
 TARGET_GCC_VERSION := $(TARGET_GCC_VERSION_EXP)
 endif
@@ -68,7 +68,7 @@ endif
 
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-TARGET_arm_CFLAGS :=    -O2 \
+TARGET_arm_CFLAGS :=    -O4 \
                         -fomit-frame-pointer \
                         -fstrict-aliasing    \
                         -funswitch-loops
@@ -82,6 +82,7 @@ TARGET_thumb_CFLAGS :=  -mthumb \
 ifneq ($(filter 4.8 4.8.% 4.9 4.9.%, $(TARGET_GCC_VERSION)),)
 TARGET_arm_CFLAGS +=  -Wno-unused-parameter \
                       -Wno-unused-value \
+		      -Wno-error \
                       -Wno-unused-function
 
 TARGET_thumb_CFLAGS +=  -Wno-unused-parameter \
